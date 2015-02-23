@@ -20,21 +20,97 @@ Include Section
 #include<stdio.h>
 #include<stdlib.h>
 #include<limits.h>
-
-int derp, herp, slurp, burp, nerp, sum, product, average, largest, smallest, ratio, multiple; //This is lazy and it makes me happy
+#include<stdbool.h>
+//char sel;
 /*--------------------------- main function -------------------------------
-Purpose: Takes input, runs operations, returns modified data.
+Purpose: Takes input, tests if it's a palindrome or not.
 
-Returns:  Sum, product, avg, max, min, ratio, etc.  
+Returns:  Palindrome T/F and failure data.
 ---------------------------------------------------------------------------*/
-
+char sel;
+int digits;
+int numFor[5];
+int numBak[5];
+int truth = 1; //Lazy Bool
+char charFor[5];
+char charBak[5];
+char charIn[5];
 
 int main()
 {
-	
-    printf("warsaw 167 ./a.out\n");
+	while(true){
+    
     printf("\nEnter n for number, w for word, or t to terminate: ");
-    scanf( "")
+    //scanf( "%c", &sel);
+    sel = getchar();
+    if (sel == 'n'){
+        printf("\nEnter a 5-digit integer: ");
+        scanf( "%i", &digits);
+        //Yes, I'm seeing how poorly I can do this.  Efficiency?  Pfft.
+        for(int i = 0; i<5; i++){  //Overflow?  LOL.
+            numFor[i] = digits%10;
+            digits = digits / 10;
+        }
+        for(int i = 0; i<5; i++){
+            printf("\nVal%d\n", numFor[i]);
+        }
+        for(int i = 0; i<5; i++){
+            numBak[i] = numFor[(4-i)];
+        }
+        for(int i = 0; i<5; i++){
+            printf("\nVal%d\n", numBak[i]);
+        }
+        for(int i = 0; i<5; i++){
+            if (numFor[i] != numBak[i]){
+                truth = 0;
+            }
+        }
+
+        if (truth == 1){  //This should be a bool... Why is it not a bool?  Idk.
+            printf("\nIt is a palindrome\n");
+        }
+        else{
+            printf("\nIt is not a palindrome\n");
+        }
+
+
+    }
+    if (sel == 'w'){
+        printf("\nEnter a 5-letter word: ");
+        scanf( "%s", &charIn);
+        for(int i = 0; charIn[i] != '\0'; i++){  //gotta love C strings
+            charFor[i] = charIn[i];
+        }
+        for(int i = 0; i<5; i++){
+            printf("\nVal %c\n", charFor[i]);
+        }
+        for(int i = 0; i<5; i++){
+            charBak[i] = charFor[(4-i)];
+        }
+        for(int i = 0; i<5; i++){
+            printf("\nVal %c\n", charBak[i]);
+        }
+        for(int i = 0; i<5; i++){
+            if (charFor[i] != charBak[i]){
+                truth = 0;
+            }
+        }
+
+        if (truth == 1){ 
+            printf("\nIt is a palindrome\n");
+        }
+        else{
+            printf("\nIt is not a palindrome\n");
+        }
+    }
+    if (sel == 't'){
+        printf("\n***** Program Terminated *****\n");
+        exit(0);
+    }
+    if (sel != 'w' && sel != 'n' && sel != 't'){
+        printf("\nWrong input, please try again\n");
+    }
+    /*
     scanf( "%i %i %i %i %i", &derp, &herp, &slurp, &burp, &nerp);
     sum = derp + herp + slurp + burp + nerp;
 
@@ -84,7 +160,8 @@ int main()
     printf("\nWarsaw 168\n");
 
 
-
+*/
 
     return (EXIT_SUCCESS);
+    }
 }
