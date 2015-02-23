@@ -21,13 +21,14 @@ Include Section
 #include<stdlib.h>
 #include<limits.h>
 #include<stdbool.h>
+#include<time.h>
 //char sel;
 /*--------------------------- main function -------------------------------
 Purpose: Takes input, tests if it's a palindrome or not.
 
 Returns:  Palindrome T/F and failure data.
 ---------------------------------------------------------------------------*/
-char sel;
+//char sel;
 int digits;
 int numFor[5];
 int numBak[5];
@@ -35,14 +36,20 @@ int truth = 1; //Lazy Bool
 char charFor[5];
 char charBak[5];
 char charIn[5];
+char sel; 
 
 int main()
 {
-	while(true){
-    
+	while(1){
+    //sel = NULL;
+    //char sel;    
     printf("\nEnter n for number, w for word, or t to terminate: ");
+   // for(int i = 0; i<1000000; i++){} //trying to delay
+    //sel = getchar();
+    
+    scanf( "%c", &sel);
+    printf("\nSel is:  %c",sel);
     //scanf( "%c", &sel);
-    sel = getchar();
     if (sel == 'n'){
         printf("\nEnter a 5-digit integer: ");
         scanf( "%i", &digits);
@@ -51,15 +58,11 @@ int main()
             numFor[i] = digits%10;
             digits = digits / 10;
         }
-        for(int i = 0; i<5; i++){
-            printf("\nVal%d\n", numFor[i]);
-        }
+       
         for(int i = 0; i<5; i++){
             numBak[i] = numFor[(4-i)];
         }
-        for(int i = 0; i<5; i++){
-            printf("\nVal%d\n", numBak[i]);
-        }
+        
         for(int i = 0; i<5; i++){
             if (numFor[i] != numBak[i]){
                 truth = 0;
@@ -81,15 +84,11 @@ int main()
         for(int i = 0; charIn[i] != '\0'; i++){  //gotta love C strings
             charFor[i] = charIn[i];
         }
-        for(int i = 0; i<5; i++){
-            printf("\nVal %c\n", charFor[i]);
-        }
+        
         for(int i = 0; i<5; i++){
             charBak[i] = charFor[(4-i)];
         }
-        for(int i = 0; i<5; i++){
-            printf("\nVal %c\n", charBak[i]);
-        }
+        
         for(int i = 0; i<5; i++){
             if (charFor[i] != charBak[i]){
                 truth = 0;
@@ -109,8 +108,10 @@ int main()
     }
     if (sel != 'w' && sel != 'n' && sel != 't'){
         printf("\nWrong input, please try again\n");
+        sel = 't';
     }
 
-    return (EXIT_SUCCESS);
+    //return (EXIT_SUCCESS);
     }
+    return (EXIT_SUCCESS);
 }
