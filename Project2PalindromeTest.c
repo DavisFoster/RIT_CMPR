@@ -28,7 +28,7 @@ Purpose: Takes input, tests if it's a palindrome or not.
 
 Returns:  Palindrome T/F and failure data.
 ---------------------------------------------------------------------------*/
-//char sel;
+
 int digits;
 int numFor[5];
 int numBak[5];
@@ -41,18 +41,11 @@ char sel;
 int main()
 {
     while(1){
-    //sel = NULL;
-    //char sel;    
+   
     printf("\nEnter n for number, w for word, or t to terminate: ");
-    //for(int i = 0; i<1000000; i++){} //trying to delay
-    //sel = getchar();
+   
     scanf("%c[^\n]", &sel);
-    //scanf( "%c", &sel);
-    //if (sel == ' '){
-      //  scanf( "%c", &sel);
-    //}
-   // printf("\nSel is:  %c",sel);
-    //scanf( "%c", &sel);
+    
     if (sel == 'n'){
         printf("\nEnter a 5-digit integer: ");
         scanf( "%i", &digits);
@@ -114,7 +107,7 @@ int main()
         sel = 't';
     }
 
-    //return (EXIT_SUCCESS);
+    
     }
     return (EXIT_SUCCESS);
 }
