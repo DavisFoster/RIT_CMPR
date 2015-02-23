@@ -40,15 +40,18 @@ char sel;
 
 int main()
 {
-	while(1){
+    while(1){
     //sel = NULL;
     //char sel;    
     printf("\nEnter n for number, w for word, or t to terminate: ");
-   // for(int i = 0; i<1000000; i++){} //trying to delay
+    //for(int i = 0; i<1000000; i++){} //trying to delay
     //sel = getchar();
-    
-    scanf( "%c", &sel);
-    printf("\nSel is:  %c",sel);
+    scanf("%c[^\n]", &sel);
+    //scanf( "%c", &sel);
+    //if (sel == ' '){
+      //  scanf( "%c", &sel);
+    //}
+   // printf("\nSel is:  %c",sel);
     //scanf( "%c", &sel);
     if (sel == 'n'){
         printf("\nEnter a 5-digit integer: ");
