@@ -26,47 +26,53 @@ Include Section
 /*--------------------------- main function -------------------------------
 Purpose: Takes input
 
-Returns:  Nothing useful.
+Returns:  Nothing formally.
 ---------------------------------------------------------------------------*/
 long double iLovePi;
 long double lifeOfPi;
 long double piInTheSky;
 long double approx1(int wut);
 long double approx2(int wut);
+long double approx3(int wut);
 
 int main()
 {
-    int x;
-    //char xtra;
-    bool isValid = false;
-    while(isValid == false){
-        int x2;
-        char xtra;
-        printf("\nEnter the number of terms to appoximate pi, or 0 to terminate: ");
-         //scanf("%i[^\n]", &x);
-        fseek(stdin,0,SEEK_END); //Clear input buffer
-        if(scanf("%d%c", &x2, &xtra) != 2 || xtra != '\n' || x2 < 0){ //Check for input validity
-            printf("\nWrong input, please try again\n");
-            //break;
+    while(true){
+
+        int x;
+        bool isValid = false;
+        while(isValid == false){
+            int x2;
+            char xtra;
+            printf("\nEnter the number of terms to appoximate pi, or 0 to terminate: ");
+             //scanf("%i[^\n]", &x);
+            fseek(stdin,0,SEEK_END); //Clear input buffer
+            if(scanf("%d%c", &x2, &xtra) != 2 || xtra != '\n' || x2 < 0){ //Check for input validity
+                printf("\nWrong input, please try again\n");
+                //break;
+            }
+            else{
+                x = x2;
+                isValid = true;
+            }
+        
+        }
+        if (x == 0){ //Terminate if 0 is input
+            printf("\n***** Program Terminated *****\n");
+            return (EXIT_SUCCESS);
         }
         else{
-            x = x2;
-            isValid = true;
+
         }
-    //printf("\nX is currently: %d", x);
-    }
-    if (x == 0){ //Terminate if 0 is input
-        printf("\n***** Program Terminated *****\n");
-        return (EXIT_SUCCESS);
-    }
-    else{
+        
+        iLovePi = approx1(x);
+        lifeOfPi = approx2(x);
+        piInTheSky = approx3(x);
+        printf("\nApprox1 is: %.8Lf\n", iLovePi);
+        printf("\nApprox2 is: %.8Lf\n", lifeOfPi);
+        printf("\nApprox3 is: %.8Lf\n", piInTheSky);
 
     }
-    printf("\nX is currently: %d\n", x);
-    iLovePi = approx1(x);
-    lifeOfPi = approx2(x);
-    printf("\nApprox1 is: %.8Lf", iLovePi);
-    printf("\nApprox2 is: %.8Lf", lifeOfPi);
 
     return (EXIT_SUCCESS);
 }
@@ -90,7 +96,7 @@ long double approx1(int wut)
 return pi;
 }
 
-long double approx2(int wut)
+long double approx2(int wut)  //I promise I'm not trying to obfuscate
 {
     long double pix = 1;
     long double numer = 1;
@@ -99,7 +105,7 @@ long double approx2(int wut)
 
 
     if (wut != 1){
-        --wut;
+        --wut; //shifts start over 1 digit
         for (int i = 1; i <= wut; i++){
             if (i % 2 != 0){ //odd
                 pix = pix - (numer / denom);
@@ -115,3 +121,33 @@ long double approx2(int wut)
 return pix;
 }
 
+long double approx3(int wut)  //Potentially the most cryptic function of all time
+{
+    long double pix = 0;
+    long double numer = 1;
+    long double denom = 9;
+    int zed = 3;
+    int ted = 1;
+
+
+    if (wut == 1){ //handles the "1" case
+        pix = 1;
+    }
+    else{
+        --wut; //shifts start over 1 digit
+        pix = 1;
+        for (int i = 1; i <= wut; i++){
+            if (i % 2 != 0){ //odd
+                pix = pix - (numer / denom);
+            }
+            else{ // even
+                pix = pix + (numer / denom);
+            }
+            zed = zed + 2; //increments the multiplier
+            ++ted; //Increments the power
+            denom = (zed * pow(3, ted));
+        }
+    }    
+    pix = (sqrt(12) * pix);
+return pix;
+}
