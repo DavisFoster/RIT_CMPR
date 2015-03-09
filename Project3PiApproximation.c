@@ -44,7 +44,7 @@ int main()
         while(isValid == false){
             int x2;
             char xtra;
-            printf("\nEnter the number of terms to appoximate pi, or 0 to terminate: ");
+            printf("\nEnter the number of terms to approximate pi, or 0 to terminate: ");
              
             fseek(stdin,0,SEEK_END); //Clear input buffer
             if(scanf("%d%c", &x2, &xtra) != 2 || xtra != '\n' || x2 < 0){ //Check for input validity
