@@ -68,9 +68,16 @@ int main()
         iLovePi = approx1(x);
         lifeOfPi = approx2(x);
         piInTheSky = approx3(x);
-        printf("\nApprox1 is: %.8Lf\n", iLovePi);
-        printf("\nApprox2 is: %.8Lf\n", lifeOfPi);
-        printf("\nApprox3 is: %.8Lf\n", piInTheSky);
+        if(x>1){
+            printf("\nFirst approximation of pi to %d terms is %.8Lf\n",x, iLovePi);
+            printf("\nSecond approximation of pi to %d terms is %.8Lf\n",x, lifeOfPi);
+            printf("\nThird approximation of pi to %d terms is %.8Lf\n",x, piInTheSky);
+        }
+        else{
+            printf("\nFirst approximation of pi to %d term is %.8Lf\n",x, iLovePi);
+            printf("\nSecond approximation of pi to %d term is %.8Lf\n",x, lifeOfPi);
+            printf("\nThird approximation of pi to %d term is %.8Lf\n",x, piInTheSky);
+        }
 
     }
 
