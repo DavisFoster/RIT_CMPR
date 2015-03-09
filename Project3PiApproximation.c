@@ -28,6 +28,11 @@ Purpose: Takes input
 
 Returns:  Nothing useful.
 ---------------------------------------------------------------------------*/
+long double iLovePi;
+long double lifeOfPi;
+long double piInTheSky;
+long double approx1(int wut);
+long double approx2(int wut);
 
 int main()
 {
@@ -39,8 +44,8 @@ int main()
         char xtra;
         printf("\nEnter the number of terms to appoximate pi, or 0 to terminate: ");
          //scanf("%i[^\n]", &x);
-        fseek(stdin,0,SEEK_END);
-        if(scanf("%d%c", &x2, &xtra) != 2 || xtra != '\n'){
+        fseek(stdin,0,SEEK_END); //Clear input buffer
+        if(scanf("%d%c", &x2, &xtra) != 2 || xtra != '\n' || x2 < 0){ //Check for input validity
             printf("\nWrong input, please try again\n");
             //break;
         }
@@ -50,16 +55,63 @@ int main()
         }
     //printf("\nX is currently: %d", x);
     }
-    if (x == 0){
+    if (x == 0){ //Terminate if 0 is input
+        printf("\n***** Program Terminated *****\n");
         return (EXIT_SUCCESS);
     }
+    else{
+
+    }
     printf("\nX is currently: %d\n", x);
-
-
-
-
-
+    iLovePi = approx1(x);
+    lifeOfPi = approx2(x);
+    printf("\nApprox1 is: %.8Lf", iLovePi);
+    printf("\nApprox2 is: %.8Lf", lifeOfPi);
 
     return (EXIT_SUCCESS);
+}
+
+long double approx1(int wut)
+{
+    long double pi = 0;
+    long double numer = 4;
+    long double denom = 1;
+
+    for (int i = 1; i <= wut; i++){
+        if (i % 2 != 0){
+            pi = pi + (numer / denom);
+        }
+        else{
+            pi = pi - (numer / denom);
+        }
+        denom = denom + 2;
+
+    }
+return pi;
+}
+
+long double approx2(int wut)
+{
+    long double pix = 1;
+    long double numer = 1;
+    long double denom = 4;
+    int zed = 2;
+
+
+    if (wut != 1){
+        --wut;
+        for (int i = 1; i <= wut; i++){
+            if (i % 2 != 0){ //odd
+                pix = pix - (numer / denom);
+            }
+            else{ // even
+                pix = pix + (numer / denom);
+            }
+            ++zed;
+            denom = (zed * zed);
+        }
+    }    
+    pix = sqrt((12 * pix));
+return pix;
 }
 
