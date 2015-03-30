@@ -32,12 +32,11 @@ int main()
 {
     while(1){
 
-        int ch; // input buffer clear
 
         printf("\nEnter a positive integer or 0 (zero) to end: ");
 
         long int input;
-        scanf("%ld[^\n]", &input); //takes input
+        scanf("%ld[^\n]", &input); 
         
        
         if (input == 0){
@@ -48,7 +47,7 @@ int main()
             printf("\nWrong input\n");
         }
         else{
-            //printf("%d",input );
+            
             separate(input);
         }
               
@@ -66,10 +65,10 @@ void separate(long int input)
     for(int i = 0; i<10; i++){ 
         sep[i] = input%10;
         input = input / 10;
-        //printf("%d",sep[i]);
+        
         if(input < 1){
             size = (i+1);
-            //printf("%d",size );
+            
             break;
         }
     }
@@ -81,10 +80,10 @@ void separate(long int input)
 
 void print(int ayy[], int size, long int input)
 {
-    //int val;
+    
     int occurances[10] = {0,0,0,0,0,0,0,0,0,0}; //LOL
     for(int x = 0; x<size; x++){ 
-        //val = ayy[x];
+        
         occurances[ayy[x]] = occurances[ayy[x]]+1;
     }
 
@@ -125,12 +124,7 @@ void print(int ayy[], int size, long int input)
     chek = 0;
     div = 0;
 
-    //int div = (divisible(ayy, size, input));
-
-               
     
-    
-//int valid = digits_different(occurances[], size);
 
 
 }
@@ -162,6 +156,8 @@ int divisible(int ayy[], int size, long int input){
 
 }
 
+
+//9867312 is divisible by its digits. <--- Might be bigger, I wasn't patient enough to let my CPU plug away at it much longer
 
 
 
