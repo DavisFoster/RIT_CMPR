@@ -17,6 +17,7 @@ Include Section
 #include<stdbool.h>
 
 void separate(long int input);
+void print(int ayy[], int size);
 
 
 
@@ -34,18 +35,19 @@ int main()
         printf("\nEnter a positive integer or 0 (zero) to end: ");
 
         long int input;
-        scanf("%d[^\n]", &input); //takes input
+        scanf("%ld[^\n]", &input); //takes input
         
        
         if (input == 0){
-            printf("\n*** Program Terminated ***");
+            printf("\n*** Program Terminated ***\n");
             return (EXIT_SUCCESS);
         }
         else if(input < 0){
             printf("\nWrong input\n");
         }
         else{
-
+            //printf("%d",input );
+            separate(input);
         }
               
     }
@@ -56,14 +58,46 @@ int main()
 void separate(long int input)
 {
     int sep[10] = {0};
+    int size = 0;
 
     for(int i = 0; i<10; i++){ 
         sep[i] = input%10;
-        sep = sep / 10;
+        input = input / 10;
+        //printf("%d",sep[i]);
+        if(input < 1){
+            size = (i+1);
+            //printf("%d",size );
+            break;
+        }
     }
 
 
-    }
-return pi;
+    print(sep, size);
+
 }
+
+void print(int ayy[], int size)
+{
+    int occurances[10] = {0,0,0,0,0,0,0,0,0,0}; //LOL
+    for(int x = 0; x<10; x++){ 
+        
+        if(ayy[x] == x){
+            occurances[x] = ++occurances[x];
+        }
+        
+    }
+
+    printf("\n");
+    printf("\nDigits:         0  1  2  3  4  5  6  7  8  9\n");
+    printf("\nOccurrences: ");
+    printf("   ");
+    for(int i = 0; i<size; i++){ 
+       printf("%d  ",occurances[i]);
+    }
+
+
+}
+
+
+
 
