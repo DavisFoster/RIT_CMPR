@@ -61,6 +61,7 @@ void separate(long int input)
 {
     int sep[10] = {0};
     int size = 0;
+    long int input2 = input;
 
     for(int i = 0; i<10; i++){ 
         sep[i] = input%10;
@@ -74,7 +75,7 @@ void separate(long int input)
     }
 
 
-    print(sep, size, input);
+    print(sep, size, input2);
 
 }
 
@@ -88,7 +89,7 @@ void print(int ayy[], int size, long int input)
     }
 
     printf("\n");
-    printf("\nDigits:         0  1  2  3  4  5  6  7  8  9\n");
+    printf("\nDigits:         0  1  2  3  4  5  6  7  8  9");
     printf("\nOccurrences: ");
     printf("   ");
     for(int i = 0; i<10; i++){ 
@@ -98,26 +99,37 @@ void print(int ayy[], int size, long int input)
     int chek = 0;
     for(int y = 0; y<10; y++){
         if((occurances[y] > 1)){
-            printf("\nWrong input for the second part.\n");
+            printf("\nWrong input for the second part.");
             printf("\nInput should not contain each digit more than once.\n");
             chek = 1;
             break;
         } 
     }
     if((occurances[0] > 0) && (chek != 1)){
-            printf("\nWrong input for the second part.\n");
+            printf("\nWrong input for the second part.");
             printf("\nInput should not contain zero.\n");
+            chek = 1;
     }
     if((occurances[0] > 0) && (chek == 1)){
             printf("\nInput should not contain zero.\n");
     }
-    chek = 0;
-/*
-    if((divisible(ayy, size, input) == 1) && (chek == 0)){
-                printf("\nIs divisible\n");
-            
+
+    int div = (divisible(ayy, size, input));
+
+    if((div == 1) && (chek != 1)){
+        printf("\n%ld is divisible by its digits.\n",input);   
     }
-    */
+    else if((div == 0) && (chek != 1)){
+        printf("\n%ld is not divisible by its digits.\n",input);
+    }    
+    chek = 0;
+    div = 0;
+
+    //int div = (divisible(ayy, size, input));
+
+               
+    
+    
 //int valid = digits_different(occurances[], size);
 
 
@@ -125,10 +137,10 @@ void print(int ayy[], int size, long int input)
 
 int digits_different(int occurances[], int size)
 {
+    int u = size;
     int ret = 1;
     for(int i = 0; i<10; i++){ 
-       if (occurances[i] > 1)
-       {
+       if (occurances[i] > 1){
            ret = 0;
            break;
        }
@@ -142,7 +154,7 @@ int divisible(int ayy[], int size, long int input){
        if (ayy[i] == 0){
            continue;
        }
-       else if(input % i != 0){
+       else if(input % ayy[i] != 0){
             return 0;
        }
     }
