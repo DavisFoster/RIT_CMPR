@@ -23,6 +23,7 @@ Include Section
 #include<limits.h>
 #include<stdbool.h>
 #include<time.h>
+#include<ctype.h>
 
 /*--------------------------- main function -------------------------------
 Purpose: Takes input, tests if it's a palindrome or not.
@@ -41,6 +42,7 @@ int main()
             {
                 while (! ( (input[i]>='a'&&input[i]<='z') || (input[i]>='A'&&input[i]<='Z' || input[i]=='\0') ) )
                 {
+                    
                     for(x=i;input[x]!='\0';++x)
                     {
                         input[x]=input[x+1];
@@ -48,6 +50,10 @@ int main()
                     input[x]='\0';
                 }
             }
+        }
+        for (int z = 0; input[z] !='\0'; ++z)
+        {
+            input[z]=tolower(input[z]);
         }
         puts(input);
     
